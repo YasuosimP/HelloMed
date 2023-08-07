@@ -10,7 +10,7 @@ const User = require('../models/user.model');
 // @access  Public
 router.post('/register', async (req, res) => {
     try {
-        let { name, email, password, role = 'Patient' } = req.body; // role will be 'Patient' if it's not provided in the request
+        let { name, email, password, role = 'Patient',age,sex,sickness, } = req.body; // role will be 'Patient' if it's not provided in the request
 
         // check for existing user
         let user = await User.findOne({ email });        
@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
         }
 
         // create new user
-        user = new User({ name, email, password, role });
+        user = new User({ name, email, password, role ,age ,sex ,sickness,});
 
         // hash password
         const salt = await bcrypt.genSalt(10);

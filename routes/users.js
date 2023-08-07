@@ -12,8 +12,10 @@ router.route('/register').post((req, res) => {
     const email = req.body.email;
     const password = req.body.password;
     const role = req.body.role || 'Patient';  // default to 'Patient' if role isn't provided
-
-    const newUser = new User({name, email, password, role});
+    const age = req.body.age;
+    const sex = req.body.sex;
+    const sickness = req.body.sickness;  
+    const newUser = new User({name, email, password, role, age,sex, sickness, });
 
     newUser.save()
         .then(() => res.json('User added!'))
